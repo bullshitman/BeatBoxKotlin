@@ -2,14 +2,13 @@ package com.bullshitman.beatbox
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.lifecycle.MutableLiveData
 
-class SoundViewModel : BaseObservable() {
+class SoundViewModel {
+    val title: MutableLiveData<String?> = MutableLiveData()
     var sound: Sound? = null
         set(sound) {
             field = sound
-            notifyChange()
+            title.postValue(sound?.name)
         }
-    @get:Bindable
-    val title: String?
-        get() = sound?.name
 }
