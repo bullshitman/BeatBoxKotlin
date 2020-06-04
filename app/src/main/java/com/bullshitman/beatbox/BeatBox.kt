@@ -4,6 +4,7 @@ import android.content.res.AssetFileDescriptor
 import android.content.res.AssetManager
 import android.media.SoundPool
 import android.util.Log
+import androidx.lifecycle.ViewModel
 import java.io.IOException
 import java.lang.Exception
 
@@ -13,8 +14,9 @@ private const val MAX_SOUNDS = 5
 
 class BeatBox(private val assets: AssetManager) {
     val sounds: List<Sound>
-    private val soundPool = SoundPool.Builder()
-        .setMaxStreams(MAX_SOUNDS).build()
+    var currRate: Float = 0.0f
+
+    private val soundPool = SoundPool.Builder().setMaxStreams(MAX_SOUNDS).build()
 
     init {
         sounds = loadSounds()
@@ -51,9 +53,14 @@ class BeatBox(private val assets: AssetManager) {
         sound.soundId = soundId
     }
 
-    fun play(sound: Sound) {
+    fun play(sound: Sound, currentRate: Float = 1.0f) {
         sound.soundId?.let {
-            soundPool.play(it, 1.0f, 1.0f, 1, 0, 1.0f )
+            soundPool.play(it, 1.0f, 1.0f, 1, 0,  currRate)
+        }
+    }
+    fun playWithRate(sound: Sound, currRate: Float) {
+        sound.soundId?.let {
+            soundPool.play(it, 1.0f, 1.0f, 1, 0, currRate )
         }
     }
 }

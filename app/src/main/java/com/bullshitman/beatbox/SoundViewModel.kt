@@ -15,6 +15,7 @@ class SoundViewModel(private val beatBox: BeatBox): BaseObservable() {
             field = sound
             notifyChange()
         }
+
     @get:Bindable
     val title: String?
         get() = sound?.name
