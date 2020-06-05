@@ -6,9 +6,10 @@
             name="viewModel"
             type="com.bullshitman.beatbox.SoundViewModel" />
     </data>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:onClick="@{() -> viewModel.onButtonClicked()}"
-        tools:text="@{viewModel.title}"/>
+        tools:text="@{viewModel.title}" />
 </layout>

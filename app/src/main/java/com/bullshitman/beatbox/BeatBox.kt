@@ -53,7 +53,7 @@ class BeatBox(private val assets: AssetManager) {
         sound.soundId = soundId
     }
 
-    fun play(sound: Sound, currentRate: Float = 1.0f) {
+    fun play(sound: Sound) {
         sound.soundId?.let {
             soundPool.play(it, 1.0f, 1.0f, 1, 0,  currRate)
         }
